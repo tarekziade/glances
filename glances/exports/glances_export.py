@@ -114,8 +114,10 @@ class GlancesExport(object):
         """Return the value of the item 'key'."""
         try:
             ret = item[item['key']]
-        except KeyError:
+        except Exception as e:
             logger.error("No 'key' available in {}".format(item))
+            return
+
         if isinstance(ret, list):
             return ret[0]
         else:
